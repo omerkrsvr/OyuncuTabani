@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OyuncuTabaniModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Futbolcu">
+    <Key>
+      <PropertyRef Name="FutbolcuID" />
+    </Key>
+    <Property Name="FutbolcuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fadi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fsoyadi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Dtarih" Type="datetime" />
+    <Property Name="Fmevki" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Kayit">
+    <Key>
+      <PropertyRef Name="KayitID" />
+    </Key>
+    <Property Name="KayitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FutbolcuID" Type="int" />
+    <Property Name="TakimID" Type="int" />
+  </EntityType>
+  <EntityType Name="Takim">
+    <Key>
+      <PropertyRef Name="TakimID" />
+    </Key>
+    <Property Name="TakimID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TakimAdi" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Kayit_Futbolcu">
+    <End Role="Futbolcu" Type="Self.Futbolcu" Multiplicity="0..1" />
+    <End Role="Kayit" Type="Self.Kayit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Futbolcu">
+        <PropertyRef Name="FutbolcuID" />
+      </Principal>
+      <Dependent Role="Kayit">
+        <PropertyRef Name="FutbolcuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kayit_Takim">
+    <End Role="Takim" Type="Self.Takim" Multiplicity="0..1" />
+    <End Role="Kayit" Type="Self.Kayit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Takim">
+        <PropertyRef Name="TakimID" />
+      </Principal>
+      <Dependent Role="Kayit">
+        <PropertyRef Name="TakimID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OyuncuTabaniModelStoreContainer">
+    <EntitySet Name="Futbolcu" EntityType="Self.Futbolcu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kayit" EntityType="Self.Kayit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Takim" EntityType="Self.Takim" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Kayit_Futbolcu" Association="Self.FK_Kayit_Futbolcu">
+      <End Role="Futbolcu" EntitySet="Futbolcu" />
+      <End Role="Kayit" EntitySet="Kayit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kayit_Takim" Association="Self.FK_Kayit_Takim">
+      <End Role="Takim" EntitySet="Takim" />
+      <End Role="Kayit" EntitySet="Kayit" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

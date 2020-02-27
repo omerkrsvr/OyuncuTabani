@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body class="login-bg">
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <h1>@(OyuncuTabani.Resources.HomeTexts.ÜyeGirişi)</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content container">
+        <div class="row">
+            <div class="col-md-3 col-md-offset-3">
+                <div class="login-wrapper">
+                    <div class="box">
+                        <div class="content-wrap">
+                            <h6>@(OyuncuTabani.Resources.HomeTexts.ÜyeGirişi)</h6>
+                            <input class="form-control" type="text" placeholder="@OyuncuTabani.Resources.HomeTexts.EmailAdres">
+                            <input class="form-control" type="password" placeholder="@OyuncuTabani.Resources.HomeTexts.Sifre">
+                            <div class="action">
+                                <a class="btn btn-primary signup" href="index.html">@OyuncuTabani.Resources.HomeTexts.Giris</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="already">
+                        <p>@OyuncuTabani.Resources.HomeTexts.Yazi1</p>
+                        <a href="signup.html">@OyuncuTabani.Resources.HomeTexts.UyeOl</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

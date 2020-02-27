@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OyuncuTabaniModelStoreContainer" CdmEntityContainer="OyuncuTabaniEntities">
+    <EntitySetMapping Name="Futbolcu">
+      <EntityTypeMapping TypeName="OyuncuTabaniModel.Futbolcu">
+        <MappingFragment StoreEntitySet="Futbolcu">
+          <ScalarProperty Name="FutbolcuID" ColumnName="FutbolcuID" />
+          <ScalarProperty Name="Fadi" ColumnName="Fadi" />
+          <ScalarProperty Name="Fsoyadi" ColumnName="Fsoyadi" />
+          <ScalarProperty Name="Dtarih" ColumnName="Dtarih" />
+          <ScalarProperty Name="Fmevki" ColumnName="Fmevki" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kayit">
+      <EntityTypeMapping TypeName="OyuncuTabaniModel.Kayit">
+        <MappingFragment StoreEntitySet="Kayit">
+          <ScalarProperty Name="KayitID" ColumnName="KayitID" />
+          <ScalarProperty Name="FutbolcuID" ColumnName="FutbolcuID" />
+          <ScalarProperty Name="TakimID" ColumnName="TakimID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Takim">
+      <EntityTypeMapping TypeName="OyuncuTabaniModel.Takim">
+        <MappingFragment StoreEntitySet="Takim">
+          <ScalarProperty Name="TakimID" ColumnName="TakimID" />
+          <ScalarProperty Name="TakimAdi" ColumnName="TakimAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

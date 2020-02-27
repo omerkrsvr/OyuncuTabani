@@ -1,0 +1,54 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>OyuncuTabani.com</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="~/Scripts/css/main.css" />
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="inner">
+            @Html.ActionLink("OyuncuTabanı.com", "Index", "Home", new { area = "" }, new { @class = "logo" })
+            <nav id="nav">
+                <a>@Html.ActionLink(OyuncuTabani.Resources.HomeTexts.AnaSayfa, "Index", "Home")</a>
+                <a>@Html.ActionLink(OyuncuTabani.Resources.HomeTexts.OyuncuAra, "OyuncuAra", "Futbolcu")</a>
+                <a>@Html.ActionLink(OyuncuTabani.Resources.HomeTexts.İletişim, "Iletisim", "Home")</a>
+                <a>@Html.ActionLink(OyuncuTabani.Resources.HomeTexts.ÜyeGirişi, "LogInIndex", "Member")</a>
+                
+                    @if (HttpContext.Current.Session["Culture"].ToString() == "tr")
+                    {
+                        <a>@Html.ActionLink("EN", "ChangeCulture", "Language", new { lang = "en", returnurl = this.Request.RawUrl }, null)</a>
+                    }
+                    else
+                    {
+                        <a>@Html.ActionLink("TR", "ChangeCulture", "Language", new { lang = "tr", returnurl = this.Request.RawUrl }, null)</a>
+                    }
+                
+            </nav>
+        </div>
+    </header>
+    <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <!-- Footer -->
+            <section id="footer">
+                <div class="inner">
+                    <div class="copyright">
+                        Copyright &copy; @DateTime.Now.Year OMER KIRSEVER & ISMAIL ATA TURAN
+                    </div>
+                </div>
+            </section>
+        </footer>
+    </div>
+    <!-- Scripts -->
+    <script src="~/Scripts/js/jquery.min.js"></script>
+    <script src="~/Scripts/js/skel.min.js"></script>
+    <script src="~/Scripts/js/util.js"></script>
+    <script src="~/Scripts/js/main.js"></script>
+</body>
+</html>

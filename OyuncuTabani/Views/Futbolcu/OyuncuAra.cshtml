@@ -1,0 +1,67 @@
+﻿@model IEnumerable<OyuncuTabani.Models.Futbolcu>
+
+@*@model PagedList.IPagedList<OyuncuTabani.Models.Futbolcu>
+@using PagedList.Mvc;*@
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Oyuncu Arama</h2>
+@*<p>
+    @Html.ActionLink("Yeni Futbolcu", "Create")
+</p>*@
+
+@using (Html.BeginForm("OyuncuAra","Futbolcu",FormMethod.Get))
+{
+    <p>
+        Futbolcu Ara: @Html.TextBox("Arama",ViewBag.CurrentFilter as string)
+        <input type="submit" value="Ara" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fadi)
+        </th>
+        <th>
+            @Html.ActionLink("Soyadı", "OyuncuAra", new { siralama = ViewBag.NameSortParm })
+
+        </th>
+        <th>
+            @Html.ActionLink("Doğum Tarihi","OyuncuAra",new { siralama = ViewBag.DateSortParm })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fmevki)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fadi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fsoyadi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dtarih)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fmevki)
+        </td>
+        <td>
+            @*@Html.ActionLink("Düzenle", "Edit", new { id=item.FutbolcuID }) |*@
+            @Html.ActionLink(OyuncuTabani.Resources.HomeTexts.Detaylar, "Details", new { id=item.FutbolcuID }) |
+            @*@Html.ActionLink("Silme", "Delete", new { id=item.FutbolcuID })*@
+        </td>
+    </tr>
+}
+
+</table>
+<br/> @*Sayfa @(Model.PageCount< Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+@Html.PagedListPager(Model,page=> Url.Action("OyuncuAra", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@

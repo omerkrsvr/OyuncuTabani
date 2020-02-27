@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OyuncuTabaniModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Futbolcu">
+    <Key>
+      <PropertyRef Name="FutbolcuID" />
+    </Key>
+    <Property Name="FutbolcuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fsoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Dtarih" Type="DateTime" Precision="3" />
+    <Property Name="Fmevki" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Kayit" Relationship="Self.FK_Kayit_Futbolcu" FromRole="Futbolcu" ToRole="Kayit" />
+  </EntityType>
+  <EntityType Name="Kayit">
+    <Key>
+      <PropertyRef Name="KayitID" />
+    </Key>
+    <Property Name="KayitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FutbolcuID" Type="Int32" />
+    <Property Name="TakimID" Type="Int32" />
+    <NavigationProperty Name="Futbolcu" Relationship="Self.FK_Kayit_Futbolcu" FromRole="Kayit" ToRole="Futbolcu" />
+    <NavigationProperty Name="Takim" Relationship="Self.FK_Kayit_Takim" FromRole="Kayit" ToRole="Takim" />
+  </EntityType>
+  <EntityType Name="Takim">
+    <Key>
+      <PropertyRef Name="TakimID" />
+    </Key>
+    <Property Name="TakimID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TakimAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Kayit" Relationship="Self.FK_Kayit_Takim" FromRole="Takim" ToRole="Kayit" />
+  </EntityType>
+  <Association Name="FK_Kayit_Futbolcu">
+    <End Role="Futbolcu" Type="Self.Futbolcu" Multiplicity="0..1" />
+    <End Role="Kayit" Type="Self.Kayit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Futbolcu">
+        <PropertyRef Name="FutbolcuID" />
+      </Principal>
+      <Dependent Role="Kayit">
+        <PropertyRef Name="FutbolcuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kayit_Takim">
+    <End Role="Takim" Type="Self.Takim" Multiplicity="0..1" />
+    <End Role="Kayit" Type="Self.Kayit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Takim">
+        <PropertyRef Name="TakimID" />
+      </Principal>
+      <Dependent Role="Kayit">
+        <PropertyRef Name="TakimID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OyuncuTabaniEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Futbolcu" EntityType="Self.Futbolcu" />
+    <EntitySet Name="Kayit" EntityType="Self.Kayit" />
+    <EntitySet Name="Takim" EntityType="Self.Takim" />
+    <AssociationSet Name="FK_Kayit_Futbolcu" Association="Self.FK_Kayit_Futbolcu">
+      <End Role="Futbolcu" EntitySet="Futbolcu" />
+      <End Role="Kayit" EntitySet="Kayit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kayit_Takim" Association="Self.FK_Kayit_Takim">
+      <End Role="Takim" EntitySet="Takim" />
+      <End Role="Kayit" EntitySet="Kayit" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

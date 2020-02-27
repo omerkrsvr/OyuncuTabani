@@ -1,0 +1,61 @@
+﻿@model OyuncuTabani.Models.Futbolcu
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@OyuncuTabani.Resources.HomeTexts.Detaylar</h2>
+
+<div>
+    <h4>@OyuncuTabani.Resources.HomeTexts.OyuncuProfili</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fadi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fadi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fsoyadi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fsoyadi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dtarih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dtarih)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fmevki)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fmevki)
+        </dd>
+
+        @foreach (var item in Model.Kayit)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => item.Takim)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => item.Takim.TakimAdi)
+            </dd>
+        }
+    </dl>
+
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.FutbolcuID }) |*@
+    @Html.ActionLink("Geri Dön", "OyuncuAra")
+</p>
